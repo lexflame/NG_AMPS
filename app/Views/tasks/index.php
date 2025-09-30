@@ -11,9 +11,14 @@
   <!-- Bootstrap JS -->
   <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  
+
   <link rel="stylesheet" href="/assets/css/makerTask-responsive.css"/>
   <link rel="stylesheet" href="/assets/css/darkscroll.css"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+
 </head>
 <body class="dark">
 
@@ -101,6 +106,7 @@
 
       <ul class="nav nav-tabs mb-3" id="tabList">
         <li class="nav-item"><a href="#" class="ndoundtabs nav-link active" data-filter="all">Все</a></li>
+        <li class="nav-item"><a href="#" class="ndoundtabs nav-link today_btn" data-filter="planer">План</a></li>
         <li class="nav-item"><a href="#" class="ndoundtabs nav-link today_btn" data-filter="today">Сегодня</a></li>
         <li class="nav-item"><a href="#" class="ndoundtabs nav-link" data-filter="completed">Выполнено</a></li>
         <li class="nav-item"><a href="#" class="ndoundtabs nav-link" data-filter="date">
@@ -120,6 +126,9 @@
   <script src="/assets/js/maker-task.plugin.js"></script>
   <script src="/assets/js/maker-task-date.plugin.js"></script>
   <script src="/assets/js/slide-task.plugin.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
   <script>
     
     $(function() {
@@ -130,9 +139,18 @@
     });
   </script>
   <script>
+    
     $(document).ready(function() {
-       $('.today_btn').click();
+      $('.today_btn').click();
+      $(document).on('click input change select', 'input', function(e) {
+        if(e.type === 'input'){
+          if($(this).hasClass('edit-date')){
+            $(this).parents().eq(2).find('.btn.btn-success.btn-sm').click()
+          }
+        }
+      });
     });
+
   </script>
   <audio id="sound" preload="auto">
    <source src="/assets/media/correctch.mp3" type="audio/mpeg">

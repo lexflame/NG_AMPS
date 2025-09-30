@@ -103,7 +103,11 @@
     .task-completed-anim {
       animation: flashComplete 0.6s ease-in-out;
     }
-
+    .dateBox {
+      margin: 5px;
+      padding: 5px;
+      border-bottom: 1px solid #CCC;
+    }
     @keyframes flashComplete {
       0% { background-color: #28a74522; }
       50% { background-color: #28a74588; }

@@ -125,6 +125,10 @@
       }
     }
 
+    function getDayDate( date ){
+      return date.split('T')[0];
+    }
+
     function renderTasks(filter = 'all' , invoke = false) {
       
       const list = $('.task-list');
@@ -134,10 +138,10 @@
       const todayStr = now.toISOString().split('T')[0];
 
 
-
       let filtered = tasks.filter(t => {
         if (filter === 'today') return t.date.startsWith(todayStr) && !t.completed;
         if (filter === 'completed') return t.completed;
+        if (filter === 'planer') return !t.completed;
         if (filter === 'date') return filteredDate(t);
         return true;
       });
@@ -150,6 +154,8 @@
       }
 
       filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+      var currentDateDay = '';
+      
 
       $.each(filtered, function(_, task) {
         const priorityLabel = task.priority === 'high' ? 'danger' : task.priority === 'medium' ? 'warning' : 'success';
@@ -160,6 +166,20 @@
         if(task.files.length < 1){
           task.files = [];
         }
+        
+
+        if (filter === 'planer'){
+          var nxDate = false
+          var DateDay = getDayDate(task.date);
+          if(DateDay != currentDateDay){
+            currentDateDay = DateDay;
+            nxDate = true
+            var $divDate = $(`<div class="dateBox mb-2 bg-dark text-white border-secondary">${currentDateDay}</div>`);
+          }else{
+            nxDate = false
+          }
+        }
+        
 
         const $card = $(`
           <div class="card cardTask mb-2 bg-dark text-white border-secondary w-100" data-id="${task.id}">
@@ -266,11 +286,20 @@
 
           </div>
         `);
+        
+        // var dateTimeSeter = $($card).find('.edit-date');
+        // $(dateTimeSeter).datetimepicker({
+        //   format: 'Y-m-d H:i', // или 'YYYY-MM-DD HH:mm'
+        //   timepicker: true,
+        //   datepicker: true
+        // })
 
-
+        if(nxDate === true)
+          $list.append($divDate);
 
         if (task.completed) $card.addClass('completed');
           $list.append($card);
+
 
         var alert_class = '';
         if(new Date(task.date) < new Date() && !$card.hasClass('completed')){
@@ -384,6 +413,8 @@
         renderTasks('all',true)
       });
     }
+
+    
 
     $(document).on('submit', '.edit-inline-form', function(e) {
       e.preventDefault();
