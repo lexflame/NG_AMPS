@@ -59,6 +59,10 @@
       /*background-color: black;*/
       /*border: 0px;*/
     }
+    body .task-list .bg-dark.weekend_box {
+      background-color: #f77b0196 !important;
+      border-radius: 5px;
+    }
     .task-list .editor_form.edit-form-wrapper.collapse.mt-2 {
       width: 98%;
       margin: auto;

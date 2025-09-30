@@ -170,11 +170,17 @@
 
         if (filter === 'planer'){
           var nxDate = false
+          var classWeekend = '';
           var DateDay = getDayDate(task.date);
           if(DateDay != currentDateDay){
             currentDateDay = DateDay;
+            nameDay = getDayName(currentDateDay);
+            isCurWeekend = isWeekendDay(currentDateDay);
+              if(isCurWeekend === true){
+                classWeekend = 'weekend_box';
+              }
             nxDate = true
-            var $divDate = $(`<div class="dateBox mb-2 bg-dark text-white border-secondary">${currentDateDay}</div>`);
+            var $divDate = $(`<div class="dateBox ${classWeekend} mb-2 bg-dark text-white border-secondary">${currentDateDay} - ${nameDay}</div>`);
           }else{
             nxDate = false
           }
@@ -442,6 +448,39 @@
         renderTasks('all',true)
       }
     });
+
+    function getDayName(dateString){
+      // Массив названий дней недели
+      const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 
+                   'Четверг', 'Пятница', 'Суббота'];
+      
+      // Создаем объект Date из переданной строки
+      const date = new Date(dateString);
+      
+      // Проверяем корректность даты
+      if (isNaN(date)) {
+          return 'Некорректная дата';
+      }
+      
+      // Возвращаем название дня недели
+      return days[date.getDay()];      
+    }
+
+    function isWeekendDay(dateString){
+      // Массив названий дней недели
+      const days = [true,false,false,false,false,false,true];
+      
+      // Создаем объект Date из переданной строки
+      const date = new Date(dateString);
+      
+      // Проверяем корректность даты
+      if (isNaN(date)) {
+          return 'Некорректная дата';
+      }
+      
+      // Возвращаем название дня недели
+      return days[date.getDay()];      
+    }
 
     function isWeekendDate(inputDateStr, inputFormat) {
       // Приведение к UTC-подобному парсеру через собственную логику или через Date конструктор
