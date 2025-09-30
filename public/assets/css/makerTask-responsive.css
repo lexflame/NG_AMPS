@@ -63,6 +63,26 @@
       background-color: #f77b0196 !important;
       border-radius: 5px;
     }
+    .task-list.planer .navbar-toggle {
+        display: block !important;
+    }
+    .navbar-toggle {
+        display: none !important;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 7px;
+        transform: translateY(2px) translateX(-7px);
+        width: 37px;
+    }
+
+    .icon-bar {
+        display: block;
+        width: 14px;
+        height: 2px;
+        margin: 3px auto;
+        background-color: #747474;
+    }
     .task-list .editor_form.edit-form-wrapper.collapse.mt-2 {
       width: 98%;
       margin: auto;

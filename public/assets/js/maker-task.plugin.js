@@ -155,6 +155,12 @@
 
       filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
       var currentDateDay = '';
+
+      if (filter === 'planer'){
+        $('#taskContainer .task-list').addClass('planer')
+      }else{
+        $('#taskContainer .task-list').removeClass('planer')
+      }
       
 
       $.each(filtered, function(_, task) {
@@ -193,6 +199,12 @@
 
               <!-- Левая часть: чекбокс + дата + заголовок -->
               <div class="d-flex align-items-center flex-nowrap overflow-hidden text-truncate">
+
+                <button class="navbar-toggle collapsed btn btn-default" type="button">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
                 <!-- Чекбокс -->
                 <div class="custom-control custom-checkbox mr-3">
