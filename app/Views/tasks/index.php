@@ -101,7 +101,7 @@
   </div>
 
   <!-- Контент -->
-  <div class="content dcast-dark" style="width: 75%;margin:auto;">
+  <div class="content dcast-dark" style="width: 75%;margin:auto;height: 92%;">
     <div id="makerTaskApp">
 
       <ul class="nav nav-tabs mb-3" id="tabList">
